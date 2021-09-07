@@ -5,9 +5,6 @@
 
 #include "image.h"
 
-// open the file, create an ImagePPM, and return the pointer
-// return NULL if the file cannot be opened
-// don't forget to close the file
 ImagePPM *readPPM(char *filename)
 {
     FILE* input = fopen(filename, "r");
@@ -36,10 +33,7 @@ ImagePPM *readPPM(char *filename)
     return pointer;
 }
 
-// open the file and write the ImagePPM to the file
-// return 1 on success
-// return 0 if the file cannot be opened
-// don't forget to close the file
+
 int writePPM(ImagePPM *pImagePPM, char *filename)
 {
     FILE* output = fopen(filename, "w");
@@ -62,8 +56,7 @@ int writePPM(ImagePPM *pImagePPM, char *filename)
     return 1;
 }
 
-// free the ImagePPM and its pixels
-// everything with a malloc needs a free
+
 void freePPM(ImagePPM *pImagePPM)
 {
     for (int i = 0; i < pImagePPM->numRows; i++) {
@@ -78,8 +71,7 @@ void freePPM(ImagePPM *pImagePPM)
 // R' = floor(0.393R + 0.769G + 0.189B)
 // G' = floor(0.349R + 0.686G + 0.168B)
 // B' = floor(0.272R + 0.534G + 0.131B)
-// If R'/G'/B' > maximum-color-value, then R'/G'/B' = maximum-color-value
-// return a new ImagePPM and leave the original unchanged
+
 ImagePPM *convertToSepia(ImagePPM *pImagePPM)
 {
     int r, g, b;
@@ -112,7 +104,7 @@ ImagePPM *convertToSepia(ImagePPM *pImagePPM)
     return grown;
 }
 
-// return a new ImagePPM and leave the original unchanged
+
 ImagePPM *growPPM(ImagePPM *pImagePPM)
 {
     ImagePPM* big = (ImagePPM*)(malloc(sizeof(ImagePPM)));
